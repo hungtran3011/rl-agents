@@ -35,7 +35,7 @@ logging_config = {
 }
 
 
-def configure(config={}, gym_level=gym.logger.INFO):
+def configure(config={}, gym_level=40):
     """
         Configure logging.
 
