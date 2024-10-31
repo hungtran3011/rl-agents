@@ -160,6 +160,7 @@ class Evaluation(object):
             duration = time.time() - start_time
             self.after_all_episodes(self.episode, rewards, duration)
             self.after_some_episodes(self.episode, rewards)
+            self.env.close()
 
     def step(self):
         """
