@@ -119,6 +119,7 @@ class Evaluation(object):
             self.run_batched_episodes()
         else:
             self.run_episodes()
+        self.close_env = True
         self.close()
 
     def test(self):
