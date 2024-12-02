@@ -164,6 +164,7 @@ class Evaluation(object):
             if hasattr(self.wrapped_env, 'video_recorder') and self.wrapped_env.video_recorder:
                 self.wrapped_env.video_recorder.close()
             self.env.close()
+        self.close()
 
     def step(self):
         """
