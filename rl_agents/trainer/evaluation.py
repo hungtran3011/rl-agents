@@ -162,7 +162,7 @@ class Evaluation(object):
             self.after_some_episodes(self.episode, rewards)
             # Close video recorder for this episode
             if hasattr(self.wrapped_env, 'video_recorder') and self.wrapped_env.video_recorder:
-                self.wrapped_env.video_recorder.close()
+                self.wrapped_env.close()
             self.env.close()
         self.close()
 
