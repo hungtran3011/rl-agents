@@ -119,7 +119,6 @@ class Evaluation(object):
             self.run_batched_episodes()
         else:
             self.run_episodes()
-        self.close_env = True
         self.close()
 
     def test(self):
@@ -247,6 +246,7 @@ class Evaluation(object):
 
             # Fit model
             self.agent.update()
+
 
     @staticmethod
     def collect_samples(environment_config, agent_config, count, start_time, seed, model_path, batch):
@@ -388,3 +388,7 @@ class Evaluation(object):
         self.writer.close()
         if self.close_env:
             self.env.close()
+        try:
+            self.wrapped_env.close()
+        except AttributeError:
+            pass
