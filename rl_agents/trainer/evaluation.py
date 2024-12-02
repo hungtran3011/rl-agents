@@ -160,6 +160,9 @@ class Evaluation(object):
             duration = time.time() - start_time
             self.after_all_episodes(self.episode, rewards, duration)
             self.after_some_episodes(self.episode, rewards)
+            # Close video recorder for this episode
+            if hasattr(self.wrapped_env, 'video_recorder') and self.wrapped_env.video_recorder:
+                self.wrapped_env.video_recorder.close()
             self.env.close()
 
     def step(self):
@@ -382,13 +385,13 @@ class Evaluation(object):
         """
             Close the evaluation.
         """
+        # Close any active video recording
+        if hasattr(self.wrapped_env, 'video_recorder') and self.wrapped_env.video_recorder:
+            self.wrapped_env.video_recorder.close()
+            
         if self.training:
             self.save_agent_model("final")
         self.wrapped_env.close()
         self.writer.close()
         if self.close_env:
             self.env.close()
-        try:
-            self.wrapped_env.close()
-        except AttributeError:
-            pass
