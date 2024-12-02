@@ -35,7 +35,7 @@ logging_config = {
 }
 
 
-def configure(config={}, gym_level=40):
+def configure(config={}, gym_level=gym.logger.min_level):
     """
         Configure logging.
 
@@ -51,7 +51,7 @@ def configure(config={}, gym_level=40):
                 config = json.load(f)
         Configurable.rec_update(logging_config, config)
     logging.config.dictConfig(logging_config)
-    # gym.logger.set_level(gym_level)
+    gym.logger.set_level(gym_level)
 
 
 def add_file_handler(file_path):
